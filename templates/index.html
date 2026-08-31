@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K. Muthukumar | Data Analytics Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">&lt;Muthukumar.DataAnalyst /&gt;</div>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+            
+            <!-- View Resume Link (Opens PDF in New Tab) -->
+            <li>
+                <a href="{{ url_for('static', filename='resume/Muthukumar_Data_Analytics_Resume.pdf') }}" target="_blank" style="color: var(--primary); font-weight: 600;">
+                    <i class="fa-solid fa-eye"></i> View Resume
+                </a>
+            </li>
+            
+            <li><a href="/admin" class="btn-sm">Admin Panel</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <span class="badge">Data Analytics & Business Insights</span>
+            <h1>Hi, I'm <span class="gradient-text">K. Muthukumar</span></h1>
+            <p>Aspiring Data Analyst proficient in Advanced Excel, SQL, Power BI, Tableau, Python, and Data Visualization.</p>
+            
+            <div class="hero-btns">
+                <!-- View Projects Button -->
+                <a href="#projects" class="btn primary-btn">View Projects</a>
+                
+                <!-- View Resume Button (New Tab) -->
+                <a href="{{ url_for('static', filename='resume/Muthukumar_Data_Analytics_Resume.pdf') }}" target="_blank" class="btn secondary-btn">
+                    <i class="fa-solid fa-eye"></i> View Resume
+                </a>
+
+                <!-- Download Resume Button (PDF Link) -->
+                <a href="{{ url_for('static', filename='resume/Muthukumar_Data_Analytics_Resume.pdf') }}" download="Muthukumar_Data_Analytics_Resume.pdf" class="btn secondary-btn">
+                    <i class="fa-solid fa-download"></i> Download Resume
+                </a>
+
+                <!-- Hire Me Email Link -->
+                <a href="mailto:muthukumarkaliraja2006@gmail.com" class="btn secondary-btn">
+                    <i class="fa-solid fa-paper-plane"></i> Hire Me
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">About Me</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; color: var(--text-muted); font-size: 1.05rem;">
+            <p>Motivated B.Sc Computer Science graduate with a strong passion for Data Analytics. Skilled in data cleaning, exploratory data analysis (EDA), visualization, and dashboard development with basic machine learning concepts. Eager to contribute to data-driven business decisions.</p>
+        </div>
+        <div class="about-container" style="margin-top: 40px;">
+            <div class="about-card">
+                <i class="fa-solid fa-database icon"></i>
+                <h3>SQL & Querying</h3>
+                <p>Expertise in MySQL, Joins, Subqueries, CTEs, Window Functions, and Aggregate Functions.</p>
+            </div>
+            <div class="about-card">
+                <i class="fa-solid fa-chart-pie icon"></i>
+                <h3>BI & Dashboards</h3>
+                <p>Building interactive dashboards in Power BI and Tableau with KPI reporting and Slicers.</p>
+            </div>
+            <div class="about-card">
+                <i class="fa-solid fa-code icon"></i>
+                <h3>Python Analytics</h3>
+                <p>Data Wrangling and Analysis using Pandas, NumPy, Seaborn, and Matplotlib.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section bg-alt">
+        <h2 class="section-title">Education</h2>
+        <div style="max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
+            <div class="about-card" style="text-align: left;">
+                <span class="tag">2023 – 2026</span>
+                <h3>B.Sc Computer Science</h3>
+                <p style="color: var(--primary); font-weight: 600;">Merit Arts and Science College</p>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">Affiliated to Manonmaniam Sundaranar University (MSU), Tirunelveli</p>
+                <p style="margin-top: 8px;"><strong>CGPA:</strong> 7.5 | <span style="color: #4ade80;">History of No Arrears</span></p>
+            </div>
+            <div class="about-card" style="text-align: left;">
+                <span class="tag">Schooling</span>
+                <h3>Higher Secondary (12th Standard)</h3>
+                <p><strong>Score:</strong> 446 Marks</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <h2 class="section-title">Technical Expertise</h2>
+        
+        <!-- Hardcoded Core Resume Skills -->
+        <div class="skills-grid" style="margin-bottom: 30px;">
+            <div class="skill-card">
+                <div class="skill-info"><span>Advanced Excel & Pivot Tables</span><span>90%</span></div>
+                <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-info"><span>SQL (MySQL, Joins, CTEs, Window Functions)</span><span>88%</span></div>
+                <div class="progress-bar"><div class="progress" style="width: 88%;"></div></div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-info"><span>Power BI & Tableau</span><span>85%</span></div>
+                <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-info"><span>Python (Pandas, NumPy, EDA)</span><span>82%</span></div>
+                <div class="progress-bar"><div class="progress" style="width: 82%;"></div></div>
+            </div>
+        </div>
+
+        <!-- Dynamic SQLite Skills from Admin Panel -->
+        {% if skills %}
+        <h3 style="text-align: center; margin-bottom: 20px; color: var(--primary);">Additional Skills (Admin Managed)</h3>
+        <div class="skills-grid">
+            {% for skill in skills %}
+            <div class="skill-card">
+                <div class="skill-info">
+                    <span>{{ skill.name }}</span>
+                    <span>{{ skill.level }}</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: {{ skill.level }};"></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section bg-alt">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+            
+            <!-- Resume Project 1 -->
+            <div class="project-card">
+                <span class="tag">Major Project</span>
+                <h3>Smart Taxi Booking System</h3>
+                <p>Designed and developed a web-based taxi booking application featuring user registration, driver allocation, booking management, and automated fare calculation.</p>
+                <div class="tech-stack">
+                    <span class="tech-pill">Web Tech</span>
+                    <span class="tech-pill">Python</span>
+                    <span class="tech-pill">Database</span>
+                </div>
+            </div>
+
+            <!-- Resume Project 2 -->
+            <div class="project-card">
+                <span class="tag">Mini Project</span>
+                <h3>Student Result Management & Analysis</h3>
+                <p>Developed a database system to manage academic records and analyze student performance data with structured storage, accuracy checking, and reporting.</p>
+                <div class="tech-stack">
+                    <span class="tech-pill">SQL</span>
+                    <span class="tech-pill">Database Integration</span>
+                    <span class="tech-pill">Data Analysis</span>
+                </div>
+            </div>
+
+            <!-- Resume Project 3 -->
+            <div class="project-card">
+                <span class="tag">Mini Project</span>
+                <h3>AI Interview Coach</h3>
+                <p>Conceptualized an AI-assisted interview preparation tool helping users practice questions, analyze interview data, and receive structured response feedback.</p>
+                <div class="tech-stack">
+                    <span class="tech-pill">Python</span>
+                    <span class="tech-pill">Data Logic</span>
+                    <span class="tech-pill">AI Concepts</span>
+                </div>
+            </div>
+
+            <!-- Dynamic SQLite Projects from Admin Panel -->
+            {% for project in projects %}
+            <div class="project-card">
+                <span class="tag">{{ project.category }}</span>
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.desc }}</p>
+                <div class="tech-stack">
+                    {% for t in project.tech %}
+                    <span class="tech-pill">{{ t.strip() }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Get In Touch</h2>
+        <div style="text-align: center; margin-bottom: 30px; color: var(--text-muted);">
+            <p><i class="fa-solid fa-envelope" style="color: var(--primary);"></i> muthukumarkaliraja2006@gmail.com</p>
+            <p><i class="fa-solid fa-phone" style="color: var(--primary);"></i> +91 8489048642</p>
+        </div>
+
+        <form id="contactForm" class="contact-form">
+            <div class="input-group">
+                <input type="text" id="name" placeholder="Your Name *" required>
+                <input type="email" id="email" placeholder="Your Email *" required>
+            </div>
+            <input type="text" id="subject" placeholder="Subject">
+            <textarea id="message" rows="5" placeholder="Your Message *" required></textarea>
+            <button type="submit" class="btn primary-btn btn-block">Send Message</button>
+            <div id="formResponse" class="form-response"></div>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 K. Muthukumar. Built with Flask, SQLite & Modern Data Stack.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

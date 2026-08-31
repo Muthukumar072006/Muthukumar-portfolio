@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .admin-box {
+            max-width: 800px;
+            margin: 100px auto;
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .admin-section { margin-bottom: 40px; }
+        .admin-section h3 { color: var(--primary); margin-bottom: 15px; }
+        .item-list { list-style: none; margin-top: 15px; }
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-alt);
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border: 1px solid var(--border);
+        }
+        .del-btn {
+            background: #f87171;
+            color: #fff;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h2>Admin Dashboard</h2>
+    <a href="/logout" class="btn secondary-btn" style="color: red; border-color: red;">Logout</a>
+</div>
+
+    <div class="admin-box">
+        <h2>Portfolio Control Center</h2>
+        <a href="/" style="color: var(--primary);">← View Portfolio Website</a>
+        <hr style="border-color: var(--border); margin: 20px 0;">
+
+        
+
+        <!-- 1. Add Skill -->
+        <div class="admin-section">
+            <h3>1. Manage Technical Skills</h3>
+            <form action="/api/add-skill" method="POST" style="display:flex; gap:10px;">
+                <input type="text" name="name" placeholder="Skill Name (e.g. SQL / Joins)" required style="flex:2;">
+                <input type="text" name="level" placeholder="Level (e.g. 90%)" required style="flex:1;">
+                <button type="submit" class="btn primary-btn">Add Skill</button>
+            </form>
+
+            <ul class="item-list">
+                {% for s in skills %}
+                <li class="item-row">
+                    <span><strong>{{ s[1] }}</strong> ({{ s[2] }})</span>
+                    <form action="/api/delete-skill/{{ s[0] }}" method="POST">
+                        <button type="submit" class="del-btn">Delete</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- 2. Add Project -->
+        <div class="admin-section">
+            <h3>2. Manage Projects</h3>
+            <form action="/api/add-project" method="POST" style="display:flex; flex-direction:column; gap:10px;">
+                <input type="text" name="title" placeholder="Project Title" required>
+                <input type="text" name="category" placeholder="Category (e.g. Data Analytics / EDA)" required>
+                <textarea name="desc" placeholder="Project Description" rows="3" required></textarea>
+                <input type="text" name="tech" placeholder="Technologies (Comma separated: SQL, Python, Pandas)" required>
+                <input type="text" name="github" placeholder="GitHub URL (Optional)">
+                <input type="text" name="demo" placeholder="Live Demo URL (Optional)">
+                <button type="submit" class="btn primary-btn">Add Project</button>
+            </form>
+
+            <ul class="item-list">
+                {% for p in projects %}
+                <li class="item-row">
+                    <span><strong>{{ p[1] }}</strong> [{{ p[2] }}]</span>
+                    <form action="/api/delete-project/{{ p[0] }}" method="POST">
+                        <button type="submit" class="del-btn">Delete</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- 3. View Received Messages -->
+        <div class="admin-section">
+            <h3>3. Contact Messages Received (SQLite Table)</h3>
+            {% if messages %}
+            <ul class="item-list">
+                {% for m in messages %}
+                <li class="item-row" style="flex-direction:column; align-items:flex-start; gap:5px;">
+                    <div><strong>From:</strong> {{ m[1] }} ({{ m[2] }}) - <small>{{ m[5] }}</small></div>
+                    <div><strong>Subject:</strong> {{ m[3] }}</div>
+                    <div style="color: var(--text-muted);">{{ m[4] }}</div>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p style="color: var(--text-muted);">No message received yet.</p>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>
