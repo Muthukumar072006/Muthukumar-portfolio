@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Project | Admin Panel</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #0b0f19;
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: #fff;
+            background: #1f2937;
+            padding: 10px 18px;
+            border-radius: 8px;
+        }
+
+        .back-btn:hover {
+            background: #374151;
+        }
+
+        .card {
+            background: #111827;
+            border: 1px solid #273244;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #d1d5db;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 13px 15px;
+            background: #0b1220;
+            color: #ffffff;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #60a5fa;
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .help-text {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: 6px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .update-btn {
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .update-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .cancel-btn {
+            text-decoration: none;
+            background: #374151;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 8px;
+        }
+
+        .cancel-btn:hover {
+            background: #4b5563;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .update-btn,
+            .cancel-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>✏️ Edit Project</h1>
+
+        <a href="{{ url_for('admin') }}" class="back-btn">
+            ← Back to Admin
+        </a>
+    </div>
+
+    <div class="card">
+
+        <form method="POST"
+              action="{{ url_for('update_project', project_id=project[0]) }}">
+
+            <!-- Project Title -->
+            <div class="form-group">
+                <label for="title">Project Title</label>
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    value="{{ project[1] }}"
+                    required
+                >
+            </div>
+
+            <!-- Category -->
+            <div class="form-group">
+                <label for="category">Category</label>
+
+                <select id="category" name="category" required>
+
+                    <option value="Data Analytics"
+                        {% if project[2] == 'Data Analytics' %}selected{% endif %}>
+                        Data Analytics
+                    </option>
+
+                    <option value="Web Development"
+                        {% if project[2] == 'Web Development' %}selected{% endif %}>
+                        Web Development
+                    </option>
+
+                    <option value="Python"
+                        {% if project[2] == 'Python' %}selected{% endif %}>
+                        Python
+                    </option>
+
+                    <option value="Machine Learning"
+                        {% if project[2] == 'Machine Learning' %}selected{% endif %}>
+                        Machine Learning
+                    </option>
+
+                    <option value="AI"
+                        {% if project[2] == 'AI' %}selected{% endif %}>
+                        AI
+                    </option>
+
+                    <option value="Other"
+                        {% if project[2] not in ['Data Analytics', 'Web Development', 'Python', 'Machine Learning', 'AI'] %}selected{% endif %}>
+                        Other
+                    </option>
+
+                </select>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+                <label for="desc">Project Description</label>
+
+                <textarea
+                    id="desc"
+                    name="desc"
+                    required
+                >{{ project[3] }}</textarea>
+            </div>
+
+            <!-- Technologies -->
+            <div class="form-group">
+                <label for="tech">Technologies</label>
+
+                <input
+                    type="text"
+                    id="tech"
+                    name="tech"
+                    value="{{ project[4] }}"
+                    required
+                >
+
+                <div class="help-text">
+                    Separate technologies using commas.
+                    Example: Python, Pandas, SQL, Power BI
+                </div>
+            </div>
+
+            <!-- GitHub -->
+            <div class="form-group">
+                <label for="github">GitHub URL</label>
+
+                <input
+                    type="url"
+                    id="github"
+                    name="github"
+                    value="{{ project[5] or '' }}"
+                    placeholder="https://github.com/username/project"
+                >
+            </div>
+
+            <!-- Demo -->
+            <div class="form-group">
+                <label for="demo">Live Demo URL</label>
+
+                <input
+                    type="url"
+                    id="demo"
+                    name="demo"
+                    value="{{ project[6] or '' }}"
+                    placeholder="https://your-demo-link.com"
+                >
+            </div>
+
+            <!-- Buttons -->
+            <div class="buttons">
+
+                <button type="submit" class="update-btn">
+                    💾 Update Project
+                </button>
+
+                <a href="{{ url_for('admin') }}" class="cancel-btn">
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
